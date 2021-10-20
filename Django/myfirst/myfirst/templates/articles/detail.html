@@ -3,45 +3,60 @@
 {% block title %}{{article.article_title}}{% endblock %}
 
 {% block content %}
-	
-<h2>{{article.article_title}}</h2>
+<div class='allart'>
+
+<div class="art">
+<h2><ins>{{article.article_title}}</ins></h2>
 	
 <p>{{article.article_text}}</p>
 
 <em>{{article.pub_date}}</em>
-
+<span class="newart">
 {% if article.was_published_recently %}
 НОВАЯ СТАТЬЯ
 {% endif %}
+</span>
+</div>
 
+<span class="line_two">
 <hr>
+</span>
 
+<div class='comment'>
 {% if latest_comments_list %}
 	
 	{%for c in latest_comments_list %}
 		<p>
-			<strong>{{c.author_name}}</strong>
+			<strong><ins>{{c.author_name}}</ins></strong>
 			<p>
 				{{c.comment_text}}
 			</p>
 		</p>
+	<hr class="line_before">
 	{% endfor %}
 {% else %}
-Комментарий не найдены.
+Комментарии не найдены.
 {% endif %}
+</div>
 
-
-<hr>
-
+<div class="table">
 <form action="{% url 'articles:leave_comment' article.id %}" method="POST">
 
 	{% csrf_token %}
 
 	<input type="text" required placeholder="Ваше имя" name="name"><br>
+
+	<style type="text/css">
+		textarea[name="text"]{
+			resize: none;
+		}
+	</style>
+
 	<textarea name="text" required="" placeholder="Текст комментария" cols="30" rows="10"></textarea><br>
 	
 	<button type="submit">Оставить комментарий</button>
 
 </form>
-
+</div>
+</div>
 {% endblock %}

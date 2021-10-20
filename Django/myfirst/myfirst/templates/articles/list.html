@@ -2,14 +2,25 @@
 
 {% block title %}Недавние новости{% endblock %}
 
+
 {% block content %}
+<div class="allart">
+<div class="art">
+<h2><ins>Articles list</ins></h2>
+</div>
 	{%if latest_articles_list %}
-	
+	<ol>
 		{% for a in latest_articles_list %}
-			<a href="{% url 'articles:detail' a.id %}">{{a.article_title}}</a>
+			<div class="art_list">
+				<li>
+				<a href="{% url 'articles:detail' a.id %}">{{a.article_title}}</a>
+				<hr>
+				</li>
+			</div>
 		{% endfor %}
-	
+	</ol>
 	{% else %}
 		Статьи не найдены )=
 	{% endif %}
+</div>
 {% endblock %}

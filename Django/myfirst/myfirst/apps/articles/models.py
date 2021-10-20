@@ -20,12 +20,13 @@ class Article(models.Model):
 	
 class Comment(models.Model):
 	article = models.ForeignKey(Article, on_delete = models.CASCADE)
-	author_name = models.CharField('Name', max_length = 50)
-	comment_text = models.CharField('txt', max_length = 200)
+	author_name = models.CharField('name', max_length = 50)
+	comment_text = models.CharField('text', max_length = 200)
 	
 	def __str__(self):
 		return self.author_name
 	
+
 	class Meta:
 		verbose_name = 'Комментарий'
 		verbose_name_plural = 'Комментарии'
